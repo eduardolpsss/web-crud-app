@@ -173,7 +173,7 @@ const initialColors = {
 }
 
 const darkMode = {
-    bg: '#030303',
+    bg: '#FCFCFC',
     colorHeadings: '#3664FF',
     colorText: '#121212',
 }

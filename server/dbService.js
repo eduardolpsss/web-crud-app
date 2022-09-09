@@ -30,13 +30,13 @@ class dbService {
     static getDbServiceInstance() {
         return instance ? instance : new dbService();
     }
-
+    
     // Exibição de dados
     async getAllData() {
         try {
             const response = await new Promise((resolve, reject) => {
                 const query = "SELECT * FROM users_infos;";
-
+                
                 connection.query(query, (err, results) => {
                     if (err) reject(new Error(err.message));
                     resolve(results);
@@ -52,11 +52,11 @@ class dbService {
     // Inserção de itens na tabela
     async insertNewName(user_name) {
         try {
-            const dateAdded = new Date();
+            const date_added = new Date();
             const insertId = await new Promise((resolve, reject) => {
                 const query = "INSERT INTO users_infos (user_name, date_added) VALUES (?,?);";
 
-                connection.query(query, [user_name, dateAdded], (err, result) => {
+                connection.query(query, [user_name, date_added], (err, result) => {
                     if (err) {
                         reject(new Error(err.message));
                     }
@@ -69,7 +69,7 @@ class dbService {
             return {
                 id: insertId,
                 user_name: user_name,
-                dateAdded: dateAdded
+                date_added: date_added
             };
         } catch (error) {
             console.log(error);

@@ -2,8 +2,6 @@ const express = require('express');
 const app = express();
 const cors = require('cors');
 const dotenv = require('dotenv');
-const { request } = require('http');
-const { response } = require('express');
 dotenv.config();
 
 // Incluindo conexão com o banco de dados
@@ -11,18 +9,17 @@ const dbService = require('./dbService');
 
 app.use(cors());
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended : false }));
 
 // Criar no banco de dados
 app.post('/insert', (request, response) => {
-    const { user_name } = request.body;
+    const { name } = request.body;
     const db = dbService.getDbServiceInstance();
-
-    // Chamando função de inserção de nome na tabela do banco de dados
+    
     const result = db.insertNewName(user_name);
 
     result
-    .then(data => response.json({ data: data }))
+    .then(data => response.json({ data: data}))
     .catch(err => console.log(err));
 });
 
